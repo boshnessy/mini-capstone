@@ -11,9 +11,8 @@ class ProductsController < ApplicationController
     render json: product_hashes
   end
 
-   def bike
+  def bike
     bike = Product.first
-
     render json: bike.as_json
   end
 
@@ -23,7 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def scooter
-    scooter = Product.last
+    scooter = Product.find_by(name: "Scooter")
     render json: scooter.as_json
   end
 
