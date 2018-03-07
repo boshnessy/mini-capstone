@@ -1,9 +1,4 @@
 class ProductsController < ApplicationController
-  def transportation_products
-    product1 = Product.first
-
-    render json: product1.as_json
-  end
 
   def show_products
     products = Product.all
@@ -15,4 +10,21 @@ class ProductsController < ApplicationController
 
     render json: product_hashes
   end
+
+   def bike
+    bike = Product.first
+
+    render json: bike.as_json
+  end
+
+  def skateboard
+    skateboard = Product.second
+    render json: {name: skateboard.name, price: skateboard.price, image: skateboard.image_url, description: skateboard.description}
+  end
+
+  def scooter
+    scooter = Product.last
+    render json: scooter.as_json
+  end
+
 end
