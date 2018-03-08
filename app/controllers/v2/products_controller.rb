@@ -1,4 +1,4 @@
-class V1::ProductsController < ApplicationController
+class V2::ProductsController < ApplicationController
 
   def show_products
     products = Product.all
