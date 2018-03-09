@@ -22,6 +22,24 @@ require 'unirest'
 # end
 
 
+# p "enter the name of your product"
+# name = gets.chomp
+# p "enter the price of your product"
+# price = gets.chomp
+# p "enter the description of your product"
+# description = gets.chomp
+
+# response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
+#   input_name: name,
+#   input_price: price,
+#   input_description: description
+#   })
+
+# puts JSON.pretty_generate(response.body)
+
+
+p "enter the id of the product you would like to update"
+product_id = gets.chomp
 p "enter the name of your product"
 name = gets.chomp
 p "enter the price of your product"
@@ -29,10 +47,12 @@ price = gets.chomp
 p "enter the description of your product"
 description = gets.chomp
 
-response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
+response = Unirest.patch("http://localhost:3000/v4/products/#{product_id}", parameters: {
   input_name: name,
   input_price: price,
   input_description: description
-  })
+})
 
-puts JSON.pretty_generate(response.body)
+products = response.body
+
+puts "Congrats, you successfully updated your product."
