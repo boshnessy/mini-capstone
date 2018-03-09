@@ -21,4 +21,8 @@ Rails.application.routes.draw do
     get '/any-product' => 'products#query_product'
     get '/the-product/:id' => 'products#query_product'
   end
+
+  namespace :v4 do
+    get '/products' => 'products#index' 
+  end
 end
