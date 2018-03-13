@@ -6,24 +6,18 @@ class Product < ApplicationRecord
       price: price,
       tax: tax,
       total: total,
+      discount: is_discounted?,
       image: image_url,
-      description: description,
-      discount: is_discounted
+      description: description
     }
   end 
 
-  def is_discounted
-
-    if price < 2
-      return true
-    else
-      return false
-    end
-  
+  def is_discounted?
+    price < 2
   end
 
   def tax
-    price * 0.09
+    (price * 0.09).round(2)
   end
 
   def total
