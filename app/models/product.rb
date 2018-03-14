@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   def as_json
     {
       id: id,
@@ -8,7 +9,8 @@ class Product < ApplicationRecord
       total: total,
       discount: is_discounted?,
       image: image_url,
-      description: description
+      description: description,
+      in_stock: in_stock
     }
   end 
 

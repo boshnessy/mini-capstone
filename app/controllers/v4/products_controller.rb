@@ -16,7 +16,8 @@ class V4::ProductsController < ApplicationController
       name: params[:input_name],
       price: params[:input_price],
       image_url: params[:input_image_url],
-      description: params[:input_description]
+      description: params[:input_description],
+      in_stock: params[:input_in_stock]
       )
     product1.save
     render json: product1.as_json
@@ -29,7 +30,8 @@ class V4::ProductsController < ApplicationController
       name: params[:input_name],
       price: params[:input_price],
       image_url: params[:input_image_url],
-      description: params[:input_description]
+      description: params[:input_description],
+      in_stock: params[:input_in_stock]
     )
   end
 

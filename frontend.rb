@@ -28,11 +28,14 @@ require 'unirest'
 # price = gets.chomp
 # p "enter the description of your product"
 # description = gets.chomp
+# p "is your product in stock?"
+# in_stock = gets.chomp
 
 # response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
 #   input_name: name,
 #   input_price: price,
-#   input_description: description
+#   input_description: description,
+#   input_in_stock: in_stock
 #   })
 
 # puts JSON.pretty_generate(response.body)
@@ -46,11 +49,14 @@ p "enter the price of your product"
 price = gets.chomp
 p "enter the description of your product"
 description = gets.chomp
+p "is your product in stock?"
+in_stock = gets.chomp
 
 response = Unirest.patch("http://localhost:3000/v4/products/#{product_id}", parameters: {
   input_name: name,
   input_price: price,
-  input_description: description
+  input_description: description,
+  input_in_stock: in_stock
 })
 
 products = response.body
