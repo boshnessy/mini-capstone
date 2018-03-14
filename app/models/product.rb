@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
-  validates :price, numericality: true
-  validates :name, length: { maximum: 30 }
+  validates :price, numericality: { greater_than: 0 }
+  validates :name, length: { maximum: 100 }
   validates :description, length: { in: 10..500 }
 
   def as_json
