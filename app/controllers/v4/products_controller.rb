@@ -29,13 +29,16 @@ class V4::ProductsController < ApplicationController
   def update
     id = params[:id]
     product = Product.find_by(id: id)
-    product.update(
+    if product.update(
       name: params[:input_name],
       price: params[:input_price],
       image_url: params[:input_image_url],
       description: params[:input_description],
       in_stock: params[:input_in_stock]
     )
+    else
+      render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
+    end
   end
 
 end
