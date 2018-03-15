@@ -1,9 +1,13 @@
 require 'unirest'
 
-# response = Unirest.get("http://localhost:3000/v2/all-products")
+# Search by name
+# p "What would you like to search for?"
+# Search by price
+p "Search for any items priced greater than:"
+search_term = gets.chomp
 
-# p "Here are your products:"
-# puts JSON.pretty_generate(response.body)
+response = Unirest.get("http://localhost:3000/v4/products?search=#{search_term}")
+p response.body
 
 
 # p "Please select the page you would like to view:"
@@ -41,24 +45,24 @@ require 'unirest'
 # puts JSON.pretty_generate(response.body)
 
 
-p "enter the id of the product you would like to update"
-product_id = gets.chomp
-p "enter the name of your product"
-name = gets.chomp
-p "enter the price of your product"
-price = gets.chomp
-p "enter the description of your product"
-description = gets.chomp
-p "is your product in stock?"
-in_stock = gets.chomp
+# p "enter the id of the product you would like to update"
+# product_id = gets.chomp
+# p "enter the name of your product"
+# name = gets.chomp
+# p "enter the price of your product"
+# price = gets.chomp
+# p "enter the description of your product"
+# description = gets.chomp
+# p "is your product in stock?"
+# in_stock = gets.chomp
 
-response = Unirest.patch("http://localhost:3000/v4/products/#{product_id}", parameters: {
-  input_name: name,
-  input_price: price,
-  input_description: description,
-  input_in_stock: in_stock
-})
+# response = Unirest.patch("http://localhost:3000/v4/products/#{product_id}", parameters: {
+#   input_name: name,
+#   input_price: price,
+#   input_description: description,
+#   input_in_stock: in_stock
+# })
 
-products = response.body
+# products = response.body
 
-puts JSON.pretty_generate(response.body)
+# puts JSON.pretty_generate(response.body)
