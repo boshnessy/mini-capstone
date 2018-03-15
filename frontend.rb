@@ -1,13 +1,21 @@
 require 'unirest'
 
-# Search by name
-# p "What would you like to search for?"
-# Search by price
-p "Search for any items priced greater than:"
-search_term = gets.chomp
+p "Would you like to search by name or by price?"
+p "[1] name"
+p "[2] price"
+user_input = gets.chomp
 
-response = Unirest.get("http://localhost:3000/v4/products?search=#{search_term}")
-p response.body
+if user_input == "1"
+  p "What would you like to search for?"
+  search_term = gets.chomp
+  response = Unirest.get("http://localhost:3000/v4/products?search=#{search_term}")
+  p response.body
+elsif user_input == "2"
+  p "Search for any items priced greater than:"
+  search_term = gets.chomp
+  response = Unirest.get("http://localhost:3000/v4/products?sort_price=#{search_term}")
+  p response.body
+end
 
 
 # p "Please select the page you would like to view:"
