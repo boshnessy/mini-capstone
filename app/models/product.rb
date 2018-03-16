@@ -13,7 +13,6 @@ class Product < ApplicationRecord
       tax: tax,
       total: total,
       discount: is_discounted?,
-      image: image_url,
       description: description,
       in_stock: in_stock,
       supplier: supplier.as_json
