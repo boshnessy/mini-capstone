@@ -76,13 +76,32 @@ require 'unirest'
 # puts JSON.pretty_generate(response.body)
 
 # USER CREATE
-response = Unirest.post("localhost:3000/v4/users", parameters: 
-  {
-    name: "Jordan",
-    email: "jordan@gmail.com",
-    password: "password",
-    password_confirmation: "password"
+# response = Unirest.post("localhost:3000/v4/users", parameters: 
+#   {
+#     name: "Jamie",
+#     email: "jamie@gmail.com",
+#     password: "password",
+#     password_confirmation: "password"
+#   }
+# )
+
+# p response.body
+
+# LOGIN
+response = Unirest.post("http://localhost:3000/user_token", 
+  parameters: {
+    auth: {
+      email: "bob#@gmail.com}",
+      password: "password"
+    }
   }
 )
 
 p response.body
+
+jwt = response.body["jwt"]
+Unirest.default_header("Authorization", "Bearer #{jwt}")
+
+# LOGOUT
+# jwt = ""
+# Unirest.clear_default_headers()
