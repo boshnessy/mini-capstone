@@ -1,21 +1,21 @@
 require 'unirest'
 
-p "Would you like to search by name or by price?"
-p "[1] name"
-p "[2] price"
-user_input = gets.chomp
+# p "Would you like to search by name or by price?"
+# p "[1] name"
+# p "[2] price"
+# user_input = gets.chomp
 
-if user_input == "1"
-  p "What would you like to search for?"
-  search_term = gets.chomp
-  response = Unirest.get("http://localhost:3000/v4/products?search=#{search_term}")
-  p response.body
-elsif user_input == "2"
-  p "Search for any items priced greater than:"
-  search_term = gets.chomp
-  response = Unirest.get("http://localhost:3000/v4/products?sort_price=#{search_term}")
-  p response.body
-end
+# if user_input == "1"
+#   p "What would you like to search for?"
+#   search_term = gets.chomp
+#   response = Unirest.get("http://localhost:3000/v4/products?search=#{search_term}")
+#   p response.body
+# elsif user_input == "2"
+#   p "Search for any items priced greater than:"
+#   search_term = gets.chomp
+#   response = Unirest.get("http://localhost:3000/v4/products?sort_price=#{search_term}")
+#   p response.body
+# end
 
 
 # p "Please select the page you would like to view:"
@@ -74,3 +74,15 @@ end
 # products = response.body
 
 # puts JSON.pretty_generate(response.body)
+
+# USER CREATE
+response = Unirest.post("localhost:3000/v4/users", parameters: 
+  {
+    name: "Bob",
+    email: "bob@gmail.com",
+    password: "password",
+    password_confirmation: "password"
+  }
+)
+
+p response.body
