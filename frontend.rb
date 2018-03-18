@@ -88,10 +88,11 @@ require 'unirest'
 # p response.body
 
 # LOGIN
-response = Unirest.post("http://localhost:3000/user_token", 
+response = Unirest.post(
+  "http://localhost:3000/user_token",
   parameters: {
     auth: {
-      email: "bob#@gmail.com}",
+      email: "bob@gmail.com",
       password: "password"
     }
   }
