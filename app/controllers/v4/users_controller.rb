@@ -9,7 +9,7 @@ class V4::UsersController < ApplicationController
       })
 
     if user.save
-      render json: {message: "You successfully created a user"}, status: :created
+      render json: {message: "You successfully signed up"}, status: :created
     else
       render json: {errors: user.errors.full_messages}, status: :bad_request
     end
