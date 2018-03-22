@@ -24,7 +24,6 @@ class V4::ProductsController < ApplicationController
       product = Product.new(
         name: params[:input_name],
         price: params[:input_price],
-        image_url: params[:input_image_url],
         description: params[:input_description],
         in_stock: params[:input_in_stock]
       )

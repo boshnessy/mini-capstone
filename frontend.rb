@@ -67,10 +67,11 @@ response = Unirest.post("http://localhost:3000/user_token",
 )
 p response.body
 jwt = response.body["jwt"]
+Unirest.default_header("Authorization", "Bearer #{jwt}")
 
 
 response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
-  name: "idk klfdjaklfjad",
+  name: "idk",
   price: 40
   })
 
