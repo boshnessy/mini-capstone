@@ -20,17 +20,21 @@ class V4::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(
-      name: params[:input_name],
-      price: params[:input_price],
-      image_url: params[:input_image_url],
-      description: params[:input_description],
-      in_stock: params[:input_in_stock]
-    )
-    if product.save
-      render json: product.as_json
+    if current_user && current_user.admin
+      product = Product.new(
+        name: params[:input_name],
+        price: params[:input_price],
+        image_url: params[:input_image_url],
+        description: params[:input_description],
+        in_stock: params[:input_in_stock]
+      )
+      if product.save
+        render json: product.as_json
+      else
+        render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
+      end
     else
-      render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
+      render json: {message: "You are not authorized to do this"}, status: :unauthorized
     end
   end
 
