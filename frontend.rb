@@ -57,25 +57,33 @@ require 'unirest'
 # puts JSON.pretty_generate(response.body)
 
 
-response = Unirest.post("http://localhost:3000/user_token",
-  parameters: {
-    auth: {
-      email: "becca@gmail.com",
-      password: "password"
-    }
-  }
-)
+
+
+# response = Unirest.post("http://localhost:3000/user_token",
+#   parameters: {
+#     auth: {
+#       email: "becca@gmail.com",
+#       password: "password"
+#     }
+#   }
+# )
+# p response.body
+# jwt = response.body["jwt"]
+# Unirest.default_header("Authorization", "Bearer #{jwt}")
+
+
+# response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
+#   name: "idk",
+#   price: 40
+#   })
+
+# p response.body
+
+response = Unirest.get("localhost:3000/v4/products")
 p response.body
-jwt = response.body["jwt"]
-Unirest.default_header("Authorization", "Bearer #{jwt}")
 
 
-response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
-  name: "idk",
-  price: 40
-  })
 
-p response.body
 
 # while true
 #   p "What do you want to do?"

@@ -1,4 +1,5 @@
 class V4::ProductsController < ApplicationController
+  before_action :authenticate_admin
 
   def index
     search_term = params[:search]
@@ -20,20 +21,16 @@ class V4::ProductsController < ApplicationController
   end
 
   def create
-    if current_user && current_user.admin
-      product = Product.new(
-        name: params[:input_name],
-        price: params[:input_price],
-        description: params[:input_description],
-        in_stock: params[:input_in_stock]
-      )
-      if product.save
-        render json: product.as_json
-      else
-        render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
-      end
+    product = Product.new(
+      name: params[:input_name],
+      price: params[:input_price],
+      description: params[:input_description],
+      in_stock: params[:input_in_stock]
+    )
+    if product.save
+      render json: product.as_json
     else
-      render json: {message: "You are not authorized to do this"}, status: :unauthorized
+      render json: {errors: product.errors.full_messages}, status: :unprocessible_entity
     end
   end
 
