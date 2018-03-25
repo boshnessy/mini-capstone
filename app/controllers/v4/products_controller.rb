@@ -25,7 +25,8 @@ class V4::ProductsController < ApplicationController
       name: params[:input_name],
       price: params[:input_price],
       description: params[:input_description],
-      in_stock: params[:input_in_stock]
+      in_stock: params[:input_in_stock],
+      supplier_id: params[:input_supplier_id]
     )
     if product.save
       render json: product.as_json
