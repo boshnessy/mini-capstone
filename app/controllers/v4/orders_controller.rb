@@ -11,6 +11,8 @@ class V4::OrdersController < ApplicationController
   end
 
   def create
+    carted_products = CartedProduct.where(status: "carted")
+
     product = Product.find_by(id: params[:product_id])
     calculated_subtotal = params[:quantity].to_i * product.price
     tax_rate = 0.09
@@ -19,8 +21,8 @@ class V4::OrdersController < ApplicationController
 
     order = Order.new(
       user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
+      # product_id: params[:product_id],
+      # quantity: params[:quantity],
       subtotal: calculated_subtotal,
       tax: calculated_tax,
       total: calculated_total
