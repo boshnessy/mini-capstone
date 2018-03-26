@@ -59,29 +59,29 @@ require 'unirest'
 
 
 
-response = Unirest.post("http://localhost:3000/user_token",
-  parameters: {
-    auth: {
-      email: "becca@gmail.com",
-      password: "password"
-    }
-  }
-)
-p response.body
-jwt = response.body["jwt"]
-Unirest.default_header("Authorization", "Bearer #{jwt}")
+# response = Unirest.post("http://localhost:3000/user_token",
+#   parameters: {
+#     auth: {
+#       email: "becca@gmail.com",
+#       password: "password"
+#     }
+#   }
+# )
+# p response.body
+# jwt = response.body["jwt"]
+# Unirest.default_header("Authorization", "Bearer #{jwt}")
 
 # Add items to cart
 # response = Unirest.post("localhost:3000/v4/carted_products", parameters: {
-#   product_id: 4,
-#   quantity: 2
+#   product_id: 7,
+#   quantity: 6
 #   })
 
 # p response.body
 
 # View cart
-response = Unirest.get("localhost:3000/v4/carted_products")
-p response.body
+# response = Unirest.get("localhost:3000/v4/carted_products")
+# p response.body
 
 
 # response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
@@ -97,103 +97,118 @@ p response.body
 
 
 
-# while true
-#   p "What do you want to do?"
-#   p "[1] Log in"
-#   p "[2] Create an order"
-#   p "[3] See your orders"
-#   p "[4] Create a product"
-#   p "[] View your carted products"
-#   p "[5] Sign up"
-#   p "[6] Log out"
-#   user_input = gets.chomp
+while true
+  p "What do you want to do?"
+  p "[1] Log in"
+  p "[2] Create an order"
+  p "[3] See your orders"
+  p "[4] Create a product"
+  p "[5] View your carted products"
+  p "[6] Add products to your cart"
+  p "[7] Sign up"
+  p "[8] Log out"
+  user_input = gets.chomp
 
-#   # LOGIN
-#   if user_input == "1"
-#     p "Enter your email"
-#     email = gets.chomp
-#     p "Enter your password"
-#     password = gets.chomp
+  # LOGIN
+  if user_input == "1"
+    p "Enter your email"
+    email = gets.chomp
+    p "Enter your password"
+    password = gets.chomp
 
-#     response = Unirest.post(
-#       "http://localhost:3000/user_token",
-#       parameters: {
-#         auth: {
-#           email: email,
-#           password: password
-#         }
-#       }
-#     )
-#     p response.body
-#     jwt = response.body["jwt"]
-#     Unirest.default_header("Authorization", "Bearer #{jwt}")
+    response = Unirest.post(
+      "http://localhost:3000/user_token",
+      parameters: {
+        auth: {
+          email: email,
+          password: password
+        }
+      }
+    )
+    p response.body
+    jwt = response.body["jwt"]
+    Unirest.default_header("Authorization", "Bearer #{jwt}")
 
-#   elsif user_input == "2"
-#   # CREATE AN ORDER
-#     p "What is the id of the product you wish to order?"
-#     product_id = gets.chomp
-#     p "How many do you want to buy?"
-#     quantity = gets.chomp
+  elsif user_input == "2"
+  # CREATE AN ORDER
+    p "What is the id of the product you wish to order?"
+    product_id = gets.chomp
+    p "How many do you want to buy?"
+    quantity = gets.chomp
 
-#     response = Unirest.post("localhost:3000/v4/orders", parameters: {
-#         product_id: product_id,
-#         quantity: quantity
-#       }
-#     )
-#     p response.body
+    response = Unirest.post("localhost:3000/v4/orders", parameters: {
+        product_id: product_id,
+        quantity: quantity
+      }
+    )
+    p response.body
 
-#   elsif user_input == "3"
-#     response = Unirest.get("localhost:3000/v4/orders")
-#     p response.body
+  elsif user_input == "3"
+    response = Unirest.get("localhost:3000/v4/orders")
+    p response.body
 
-#   elsif user_input == "4"
-#     p "enter the name of your product"
-#     name = gets.chomp
-#     p "enter the price of your product"
-#     price = gets.chomp
-#     p "enter the description of your product"
-#     description = gets.chomp
-#     p "is your product in stock?"
-#     in_stock = gets.chomp
-#     p "Enter the id of your supplier"
-#     supplier_id = gets.chomp
+  elsif user_input == "4"
+    p "enter the name of your product"
+    name = gets.chomp
+    p "enter the price of your product"
+    price = gets.chomp
+    p "enter the description of your product"
+    description = gets.chomp
+    p "is your product in stock?"
+    in_stock = gets.chomp
+    p "Enter the id of your supplier"
+    supplier_id = gets.chomp
 
-#     response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
-#       input_name: name,
-#       input_price: price,
-#       input_description: description,
-#       input_in_stock: in_stock,
-#       input_supplier_id: supplier_id
-#       }
-#     )
+    response = Unirest.post("http://localhost:3000/v4/products/", parameters: {
+      input_name: name,
+      input_price: price,
+      input_description: description,
+      input_in_stock: in_stock,
+      input_supplier_id: supplier_id
+      }
+    )
 
-#     puts JSON.pretty_generate(response.body)
+    puts JSON.pretty_generate(response.body)
 
-#   elsif user_input == "5"
-#     # USER CREATE
-#     p "Enter your name"
-#     name = gets.chomp
-#     p "Enter your email"
-#     email = gets.chomp
-#     p "Enter your password"
-#     password = gets.chomp
-#     p "Enter your password again"
-#     password_confirmation = gets.chomp
+  elsif user_input == "5"
+    # VIEW CARTED PRODUCTS
+    response = Unirest.get("localhost:3000/v4/carted_products")
+    p response.body
 
-#     response = Unirest.post("localhost:3000/v4/users", parameters: 
-#       {
-#         name: name,
-#         email: email,
-#         password: password,
-#         password_confirmation: password_confirmation
-#       }
-#     )
+  elsif user_input == "6"
+    ADD PRODUCTS TO CART
+    response = Unirest.post("localhost:3000/v4/carted_products", parameters: {
+      product_id: 7,
+      quantity: 6
+      }
+    )
+    p response.body
 
-#     p response.body
-#   elsif user_input == "6"
-#     # LOGOUT
-#     jwt = ""
-#     Unirest.clear_default_headers()
-#     break
-#   end
-# end
+  elsif user_input == "7"
+    # USER CREATE
+    p "Enter your name"
+    name = gets.chomp
+    p "Enter your email"
+    email = gets.chomp
+    p "Enter your password"
+    password = gets.chomp
+    p "Enter your password again"
+    password_confirmation = gets.chomp
+
+    response = Unirest.post("localhost:3000/v4/users", parameters: 
+      {
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    )
+
+    p response.body
+  elsif user_input == "8"
+    # LOGOUT
+    jwt = ""
+    Unirest.clear_default_headers()
+    break
+  end
+end
