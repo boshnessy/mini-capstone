@@ -19,4 +19,10 @@ class V4::CartedProductsController < ApplicationController
       render json: {errors: carted_product.errors.full_messages}, status: :unprocessible_entity
     end
   end
+
+  def destroy
+    carted_product = CartedProduct.find_by(id: params[:id])
+    carted_product.update(status: "removed")
+    render json: {message: "Item deleted from shopping cart"}
+  end
 end

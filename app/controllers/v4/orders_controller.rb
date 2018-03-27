@@ -29,7 +29,7 @@ class V4::OrdersController < ApplicationController
       total: calculated_total
     )
     if order.save
-      carted_products.update_all(status: "purchased", order_id: order_id)
+      carted_products.update_all(status: "purchased", order_id: order.id)
       render json: order.as_json # {message: "Order created successfully"}, status: :created
     else
       render json: {errors: order.errors.full_messages}, status: :unprocessible_entity

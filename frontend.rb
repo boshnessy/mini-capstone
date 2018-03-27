@@ -85,7 +85,11 @@ Unirest.default_header("Authorization", "Bearer #{jwt}")
 # p response.body
 
 # View cart
-response = Unirest.get("localhost:3000/v4/carted_products")
+# response = Unirest.get("localhost:3000/v4/carted_products")
+# p response.body
+
+# Delete item from cart
+response = Unirest.delete("localhost:3000/v4/carted_products/9")
 p response.body
 
 
