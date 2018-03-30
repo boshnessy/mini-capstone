@@ -12,17 +12,17 @@
   </head>
   <body>
     <h2>Create a new product!</h2>
-    <form action="/create-new-product" method="post">
+    <form action="/v4/products" method="post">
       <div>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name">
+        <input type="text" id="name" name="product_name">
       </div>
       <div>
-        <label for="name">Price:</label>
-        <input type="text" id="name" name="user_name">
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="product_price">
       </div>
       <div>
-        <label for="name">Description:</label>
+        <label for="description">Description:</label>
         <textarea cols="30" rows="1"></textarea>
       </div>
       <div>
@@ -34,7 +34,7 @@
         </select>
       </div>
       <div class="button">
-        <button type="submit">Sumbit</button>
+        <button type="submit">Submit</button>
       </div>
     </form>
 
