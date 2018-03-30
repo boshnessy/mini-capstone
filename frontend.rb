@@ -89,7 +89,9 @@ Unirest.default_header("Authorization", "Bearer #{jwt}")
 # p response.body
 
 # Delete item from cart
-response = Unirest.delete("localhost:3000/v4/carted_products/9")
+p "What is the id of the item you wish to delete?"
+id = gets.chomp
+response = Unirest.delete("localhost:3000/v4/carted_products/#{id}")
 p response.body
 
 
