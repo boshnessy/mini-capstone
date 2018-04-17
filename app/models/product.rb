@@ -24,7 +24,7 @@ class Product < ApplicationRecord
       description: description,
       in_stock: in_stock,
       supplier: supplier.as_json,
-      images: images.as_json,
+      images: images[0],
       categories: categories.as_json
     }
   end 

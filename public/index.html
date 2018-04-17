@@ -50,9 +50,12 @@
       </nav>
       <!-- END NAV BAR -->
 
-      <div class="row">
+      <div id="vue-app">
+
+        <router-view></router-view>
 
       </div>
+
     </div>
     <!-- END CONTAINER -->
 
@@ -61,38 +64,25 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="index.js" defer></script>
   </body>
 </html>
 
-<template id="product-card">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Missouri Tigers License Plate Frame</h5>
-        <p class="card-text">$17.99</p>
-        <p class="card-text">Show your Mizzou pride on your car</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Orange Clockwork Mountain Bike</h5>
-        <p class="card-text">$300.00</p>
-        <p class="card-text">An orange mountain bike</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Urban Lounge Butterfly Chair</h5>
-        <p class="card-text">$24.50</p>
-        <p class="card-text">Armless comfy chair</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<template id="home-page">
+  <div class="row">
+    <div class="col-sm-4" v-for="product in products">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <img class="image-url" v-bind:src="products[4].images.url" width="200px">
+          <p class="card-text price">{{ product.price }}</p>
+          <p class="card-text description">{{ product.description }}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
     </div>
   </div>
